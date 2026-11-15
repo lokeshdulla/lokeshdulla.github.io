@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boys' Weight-for-Age Z-Score Calculator (0–5 years)</title>
+  <meta name="description" content="Find where a boy's weight sits on the WHO weight-for-age standard, from birth to 5 years. Runs entirely in your browser.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <h1>Boys' weight-for-age</h1>
+    <p>WHO Child Growth Standards, birth to 5 years. Enter a date of birth to see the expected weight range; add a weight to get a Z-score.</p>
+  </header>
+
+  <main>
+    <!-- ===== Input form ===== -->
+    <section class="panel" aria-labelledby="form-title">
+      <h2 id="form-title">Child details</h2>
+      <form id="calc-form" novalidate>
+        <label for="dob">Date of birth</label>
+        <input type="date" id="dob" required>
+
+        <label for="measured">Weighed on</label>
+        <input type="date" id="measured">
+        <small>Defaults to today.</small>
+
+        <label for="weight">Weight in kg <span class="opt">(optional)</span></label>
+        <input type="number" id="weight" inputmode="decimal" step="0.01" min="0.5" max="40" placeholder="e.g. 9.4">
+
+        <div class="actions">
+          <button type="submit">Calculate</button>
+          <button type="reset" class="ghost" id="reset">Clear</button>
+        </div>
+        <p id="error" class="error" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <!-- ===== Results ===== -->
+    <section class="results" aria-live="polite" aria-labelledby="res-title">
+      <h2 id="res-title" class="sr-only">Results</h2>
+
+      <div id="empty" class="empty">Enter a date of birth and press Calculate. The chart below shows the standard curves.</div>
+
+      <div id="output" hidden>
+        <p class="age" id="age-text"></p>
+        <p class="verdict" id="verdict"></p>
+        <p class="detail" id="detail"></p>
+      </div>
+
+      <figure class="chart-wrap">
+        <canvas id="chart" role="img" aria-label="Weight-for-age chart for boys with Z-score curves from -3 to +3"></canvas>
+        <figcaption>Curves: −3, −2, median, +2, +3 SD. Shaded band is −2 to +2 SD.</figcaption>
+      </figure>
+
+      <div id="table-wrap" hidden>
+        <h3>Expected weight at this age</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>−3 SD</th><th>−2 SD</th><th>Median</th><th>+2 SD</th><th>+3 SD</th></tr></thead>
+            <tbody><tr id="ref-row"></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <p>Screening aid only, not a diagnosis. A single measurement says little about growth; trends over time matter more. Talk to a doctor or health worker about any concern.</p>
+    <p>Source: WHO Child Growth Standards, weight-for-age, boys. All calculations run in your browser; nothing is sent or stored.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

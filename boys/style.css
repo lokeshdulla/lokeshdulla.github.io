@@ -1,0 +1,83 @@
+/* ===== Design tokens ===== */
+:root {
+  --bg: #f2f6f7;
+  --surface: #ffffff;
+  --ink: #14222b;
+  --muted: #5a6b75;
+  --line: #d6e0e4;
+  --teal: #0f7b6c;
+  --teal-soft: #dff1ee;
+  --amber: #b36b00;
+  --red: #b3261e;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e171c; --surface: #16232a; --ink: #e8f0f3; --muted: #9bb0ba;
+    --line: #2a3c45; --teal: #4fd1b8; --teal-soft: #17352f; --amber: #f0a73a; --red: #ff7b72;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+h1, h2, h3, .verdict { font-family: Georgia, "Times New Roman", serif; font-weight: 600; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ===== Header ===== */
+.site-header { max-width: 1040px; margin: 0 auto; padding: 2rem 1.25rem 1rem; }
+.site-header h1 { margin: 0 0 .4rem; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; }
+.site-header p { margin: 0; color: var(--muted); max-width: 60ch; }
+
+/* ===== Layout: stacked on mobile, two columns on wide screens ===== */
+main { max-width: 1040px; margin: 0 auto; padding: 1rem 1.25rem 2rem; display: grid; gap: 1.25rem; }
+@media (min-width: 860px) { main { grid-template-columns: 300px 1fr; align-items: start; } }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; }
+.panel h2 { margin: 0 0 .75rem; font-size: 1.2rem; }
+
+/* ===== Form ===== */
+label { display: block; margin: .9rem 0 .3rem; font-weight: 600; font-size: .95rem; }
+.opt { font-weight: 400; color: var(--muted); }
+input {
+  width: 100%; padding: .65rem .75rem; font: inherit; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+}
+input:focus-visible, button:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+small { color: var(--muted); }
+.actions { display: flex; gap: .6rem; margin-top: 1.2rem; }
+button {
+  font: inherit; font-weight: 600; padding: .7rem 1.2rem; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--teal); background: var(--teal); color: #fff;
+}
+@media (prefers-color-scheme: dark) { button { color: #06201b; } }
+button.ghost { background: transparent; color: var(--teal); }
+.error { color: var(--red); font-weight: 600; margin: .9rem 0 0; }
+
+/* ===== Results ===== */
+.results { min-width: 0; }
+.empty { color: var(--muted); padding: 1rem 0; }
+.age { margin: 0; color: var(--muted); }
+.verdict { margin: .2rem 0 .3rem; font-size: clamp(1.6rem, 4.5vw, 2.2rem); line-height: 1.2; }
+.verdict.ok { color: var(--teal); }
+.verdict.warn { color: var(--amber); }
+.verdict.alert { color: var(--red); }
+.detail { margin: 0 0 1rem; max-width: 65ch; }
+
+.chart-wrap { margin: 1rem 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .75rem; }
+.chart-wrap canvas { width: 100%; height: 340px; display: block; }
+@media (max-width: 520px) { .chart-wrap canvas { height: 280px; } }
+figcaption { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+
+h3 { font-size: 1.05rem; margin: 1rem 0 .5rem; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); }
+th, td { padding: .6rem; text-align: center; border-bottom: 1px solid var(--line); }
+th { font-size: .85rem; color: var(--muted); font-weight: 600; }
+td { font-variant-numeric: tabular-nums; }
+
+/* ===== Footer ===== */
+.site-footer { max-width: 1040px; margin: 0 auto; padding: 1rem 1.25rem 2.5rem; color: var(--muted); font-size: .88rem; border-top: 1px solid var(--line); }
+.site-footer p { margin: .3rem 0; max-width: 75ch; }
