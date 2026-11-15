@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- viewport-fit=cover lets the layout use the full phone screen (notches) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14213d">
+  <title>ChitBook – Chit Fund Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER: title + back button (shown on inner screens) -->
+  <header class="top">
+    <button id="backBtn" class="icon-btn" hidden aria-label="Back">&#8592;</button>
+    <h1 id="pageTitle">ChitBook</h1>
+  </header>
+
+  <!-- MAIN: every screen is rendered into this element by script.js -->
+  <main id="app" aria-live="polite"></main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <p>Data is stored only in this browser. <button id="backupBtn" class="link">Download backup</button></p>
+  </footer>
+
+  <!-- Draw overlay (name shuffle animation) -->
+  <div id="drawOverlay" class="overlay" hidden>
+    <div class="draw-card">
+      <p id="drawLabel">Drawing month 1…</p>
+      <div id="drawName" class="draw-name">—</div>
+      <button id="drawClose" class="btn" hidden>Done</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <input type="file" id="importFile" accept="application/json" hidden>
+  <script src="script.js"></script>
+</body>
+</html>
